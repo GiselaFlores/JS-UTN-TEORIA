@@ -325,3 +325,207 @@ function datoUsuario(saludar){
 }
 
 datoUsuario(saludar);
+
+
+//ARRAY
+
+const array = new Array("a", 5, "hola", 120, true); //tradicional
+console.log(array[2]);
+
+const frutas = ["manzana", "frutilla", "naranja", "banana", "pera"];
+
+const verduras = [];
+
+verduras[0] = "papa";
+verduras[1] = "zapallo";
+verduras[2] = "tomate";
+
+console.log(verduras[2]);
+
+console.log(frutas.length); //cantidad de elementos
+
+console.log(frutas.length -1); // cantidad de posiciones
+
+console.log("verduras: ", verduras);
+
+
+// recorrer el array
+
+//FOREACH
+
+for(i = 0; i < frutas.length; i++){
+   console.log(frutas[i]);
+}
+
+frutas.forEach( fruti => console.log(fruti));
+
+//MAP
+
+const numerosPares = [2, 4, 6, 8, 10];
+
+const numerosImpares = numerosPares.map(function(num){
+   return num -1;
+});
+
+// destrucuración de un array
+
+const posiciones = [10, 20];
+
+const [valorUno, valorDos] = posiciones;  // valorUno = 10 valorDos = 20
+
+// cambio de variables
+
+let varUno = 10;
+let varDos = 20;
+
+/*
+let aux = varUno;
+varUno = valorDos;
+varDos = aux;
+*/
+
+[valorUno, valorDos] = [valorDos, valorUno];
+
+const posAmpliada = [10, 11, ...pair, 30];  // [10, 11, posiciones, 30]
+
+// métodos
+
+frutas.push("kiwi");
+console.log(frutas);
+
+let eliminado = frutas.pop(); // elimina el último y devuelve ese eliminado
+
+let tamano = frutas.unshift("frutilla", "arándanos", "durazno", "uvas"); //agrega al inicio y devuelve cantidad de elementos, tamaño del array
+console.log(frutas);
+
+let primero = frutas.shift(); // elimina y devuelve el primero
+
+let verduleria = frutas.concat(verduras); // concatena dos o mas arrays
+console.log(verduleria);
+
+let busquedaInicio = verduleria.indexOf("frutilla", 3); // devuelve la posición donde esta el elemento la primera vez que aparece y busca desde el princinpio
+console.log(busquedaInicio);
+
+let busquedaFinal = verduleria.lastIndexOf("frutilla"); 
+
+let arrayNuevo = verduleria.slice(2, 6); // formar un sub array de un array, y me lo devuelve como un nuevo array
+
+verduleria.splice(2, 0, "lechuga");
+console.log(verduleria);
+
+verduleria.splice(1, 1, "pera");
+console.log(verduleria);
+
+verduleria.reverse();
+console.log(verduleria);
+
+verduleria.sort();
+console.log(verduleria);
+
+const numeros = [10, 5, 1, 59, 6, 89, 18, 9, 27, 235, 425, 38];
+console.log(numeros.sort());
+
+//[1, 10, 18, 235, 27, 38, 425, 5, 59, 6, 89, 9]
+
+numeros.sort((a, b) => a - b);
+console.log(numeros);
+
+numeros.toSorted();
+console.log(numeros);
+
+const cumpleCriterio = numeros.every(num => num %2 === 0);
+console.log(cumpleCriterio);
+
+const cumpleAlMenosUno = numeros.some(num => num %2 === 0);
+console.log(cumpleAlMenosUno);
+
+const doble = numeros.map(num => num*2);
+console.log(doble);
+
+const pares = numeros.filter(num => num %2 === 0);
+console.log(pares);
+
+const busquedaCondicion = numeros.findIndex(num => num > 25);
+console.log(busquedaCondicion);
+
+const busquedaElemento = numeros.find(num => num > 25);
+console.log(busquedaElemento);
+
+const acumulador = numeros.reduce((acumula, dato) => acumula + dato, 0);
+console.log(acumulador);
+
+const acumuladorDereIzq = numeros.reduceRight((acumula, dato) => acumula - dato, 0);
+console.log(acumuladorDereIzq);
+
+//DOM
+
+//Selectores
+
+const id = document.getElementById("unid");
+const name = document.getElementsByName("form");
+const tag = document.getElementsByTagName("p");
+const clase = document.getElementsByClassName("fondorojo");
+
+const comodinUno = document.querySelector(".verde");
+//const comodinUno = document.querySelector("#verde");
+
+const comodinMultiple = document.querySelectorAll(".rojo");
+
+// devolver al HTML
+
+//nodo.textoContext = "Hola a todos";
+//nodo.innerHTML = "<p>hola mundo</p>";
+
+// insertar una imagen
+
+const div = document.getElementById("divPrincipal");
+
+const img = document.createElement("img");
+img.src = "http://www.google.com./img.png";
+img.alt = "img de google";
+
+div.appendChild(img);
+
+/******/
+
+const ul = document.getElementsByTagName("ul");
+
+numeros.forEach(num => {
+   const li = document.createElement("li");
+   li.innerHTML = num;
+   ul.appendChild(li);
+   //li.className = "rojo";
+});
+
+//ul.className="";
+
+// EJEMPLO: cambio de color rgb(255, 255, 255);
+
+const btn = document.querySelector("button");
+
+//toque el botón y cambie de color el fondo
+
+//Pasos:
+//función que permita cambiar el color
+//un generador de colores rgb(255 255 255)
+// con el color ya armado edvuelvo el color a la acción (al click del botón)
+
+//random() devolverme un número cualquiera entre 0 y <1
+
+function randomColor(number){
+   return Math.floor(Math.random()*(number + 1));
+}
+
+/*
+console.log(randomColor(255));
+console.log(randomColor(255));
+console.log(randomColor(255));
+console.log(randomColor(255));
+*/
+
+//randomColor(255);
+
+btn.addEventListener("click", ()=>{
+   const color = `rgb(${randomColor(255)}, ${randomColor(255)}, ${randomColor(255)})`;  
+   document.body.style.backgroundColor = color;  // rgb(123, 54, 98);
+});
